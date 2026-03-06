@@ -1,0 +1,45 @@
+<!-- 1. 课程主视觉 · 背景图 + 遮罩突出文字 -->
+<section class="relative pt-16 pb-20 md:py-24 overflow-hidden min-h-[28rem] md:min-h-[32rem] flex items-center">
+    <!-- 背景图 -->
+    <div class="absolute inset-0 z-0">
+        <img class="w-full h-full object-cover"
+            src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=2070&auto=format&fit=crop"
+            alt="钢琴与音乐课堂" loading="eager">
+        <!-- 深色遮罩：由下至上渐变，确保文字清晰可读 -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/85 to-black/60"></div>
+    </div>
+    <!-- 内容层 -->
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto">
+            <span
+                class="inline-block bg-yellow-300/10 text-yellow-300 border border-yellow-300/30 px-4 py-1 rounded-full text-sm font-bold mb-6 drop-shadow-lg">🎹
+                全体系 · 从兴趣到专业</span>
+            <h1 class="text-5xl md:text-6xl font-black leading-tight drop-shadow-lg">
+                用<span class="text-yellow-300">黄黑键</span>，打开<span class="text-yellow-300">所有</span>音乐门类
+            </h1>
+            <p class="text-xl text-gray-200 mt-6 max-w-2xl mx-auto drop-shadow-md">
+                钢琴、吉他、鼓、声乐、乐队合奏……无论古典或现代，总有一套课程适合你的音乐目标。</p>
+            <!-- 快速筛选标签 (视觉装饰) -->
+            <div class="flex flex-wrap gap-3 justify-center mt-10">
+                <span
+                    class="bg-black/50 backdrop-blur-sm text-yellow-300 px-4 py-2 rounded-full text-sm border border-yellow-300/30 shadow-lg">🎹
+                    钢琴 · 键盘</span>
+                <span
+                    class="bg-black/50 backdrop-blur-sm text-yellow-300 px-4 py-2 rounded-full text-sm border border-yellow-300/30 shadow-lg">🎸
+                    吉他 · 贝斯</span>
+                <span
+                    class="bg-black/50 backdrop-blur-sm text-yellow-300 px-4 py-2 rounded-full text-sm border border-yellow-300/30 shadow-lg">🥁
+                    鼓 · 打击乐</span>
+                <span
+                    class="bg-black/50 backdrop-blur-sm text-yellow-300 px-4 py-2 rounded-full text-sm border border-yellow-300/30 shadow-lg">🎤
+                    声乐 · 合唱</span>
+                <span
+                    class="bg-black/50 backdrop-blur-sm text-yellow-300 px-4 py-2 rounded-full text-sm border border-yellow-300/30 shadow-lg">🎻
+                    弦乐 · 管乐</span>
+                <span
+                    class="bg-black/50 backdrop-blur-sm text-yellow-300 px-4 py-2 rounded-full text-sm border border-yellow-300/30 shadow-lg">🎼
+                    乐理 · 即兴</span>
+            </div>
+        </div>
+    </div>
+</section>
