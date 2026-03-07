@@ -7,6 +7,7 @@ export const createApp = ViteSSG(
     App,
     {
         routes,
+        base: import.meta.env.BASE_URL,
         scrollBehavior() {
             // 保持之前的跳转至顶部逻辑
             return { top: 0 }
