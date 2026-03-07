@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { RouterLink } from 'vue-router'
 import type { ActionLink, ImageData } from '@/types'
 
 withDefaults(defineProps<{
@@ -19,6 +20,8 @@ withDefaults(defineProps<{
 }>(), {
   reversed: false
 })
+
+const isInternal = (href?: string) => href && href.startsWith('/') && !href.startsWith('//')
 </script>
 
 <template>
@@ -41,14 +44,26 @@ withDefaults(defineProps<{
           </div>
           <div v-if="cta" class="pt-2 flex flex-wrap gap-4">
             <template v-for="(btn, index) in cta" :key="index">
-              <a v-if="btn.primary" :href="btn.href"
-                class="bg-yellow-300 text-black px-8 py-3 rounded-full font-bold inline-block hover:bg-yellow-200 transition">
-                {{ btn.text }}
-              </a>
-              <a v-else :href="btn.href"
-                class="border border-yellow-300 text-yellow-300 px-8 py-3 rounded-full font-bold inline-block hover:bg-yellow-300 hover:text-black transition">
-                {{ btn.text }}
-              </a>
+              <template v-if="btn.primary">
+                <RouterLink v-if="isInternal(btn.href)" :to="btn.href"
+                  class="bg-yellow-300 text-black px-8 py-3 rounded-full font-bold inline-block hover:bg-yellow-200 transition">
+                  {{ btn.text }}
+                </RouterLink>
+                <a v-else :href="btn.href"
+                  class="bg-yellow-300 text-black px-8 py-3 rounded-full font-bold inline-block hover:bg-yellow-200 transition">
+                  {{ btn.text }}
+                </a>
+              </template>
+              <template v-else>
+                <RouterLink v-if="isInternal(btn.href)" :to="btn.href"
+                  class="border border-yellow-300 text-yellow-300 px-8 py-3 rounded-full font-bold inline-block hover:bg-yellow-300 hover:text-black transition">
+                  {{ btn.text }}
+                </RouterLink>
+                <a v-else :href="btn.href"
+                  class="border border-yellow-300 text-yellow-300 px-8 py-3 rounded-full font-bold inline-block hover:bg-yellow-300 hover:text-black transition">
+                  {{ btn.text }}
+                </a>
+              </template>
             </template>
           </div>
         </div>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { RouterLink } from 'vue-router'
 import type { FeaturedNews, HotNewsItem } from '@/types'
 
 withDefaults(defineProps<{
@@ -18,6 +19,8 @@ withDefaults(defineProps<{
   }),
   hotNews: () => []
 })
+
+const isInternal = (href?: string) => href && href.startsWith('/') && !href.startsWith('//')
 </script>
 
 <template>
@@ -26,7 +29,10 @@ withDefaults(defineProps<{
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-end mb-10 text-white">
         <h2 class="text-3xl md:text-4xl font-black text-yellow-300">{{ header.title }}</h2>
-        <a :href="header.moreLink"
+        <RouterLink v-if="isInternal(header.moreLink)" :to="header.moreLink"
+          class="text-yellow-300 border-b border-yellow-300/30 pb-0.5 text-sm font-bold hover:text-white transition">更多热点
+          →</RouterLink>
+        <a v-else :href="header.moreLink"
           class="text-yellow-300 border-b border-yellow-300/30 pb-0.5 text-sm font-bold hover:text-white transition">更多热点
           →</a>
       </div>
@@ -48,14 +54,26 @@ withDefaults(defineProps<{
             <p class="text-gray-300 mb-4">{{ featuredNews.description }}</p>
             <div class="flex gap-3">
               <template v-for="(btn, index) in featuredNews.buttons" :key="index">
-                <a :href="btn.href" v-if="btn.primary"
-                  class="bg-yellow-300 text-black px-6 py-3 rounded-full font-bold text-sm hover:bg-yellow-200 transition">
-                  {{ btn.text }}
-                </a>
-                <a :href="btn.href" v-else
-                  class="border border-yellow-300 text-yellow-300 px-6 py-3 rounded-full font-bold text-sm hover:bg-yellow-300 hover:text-black transition">
-                  {{ btn.text }}
-                </a>
+                <template v-if="btn.primary">
+                  <RouterLink v-if="isInternal(btn.href)" :to="btn.href"
+                    class="bg-yellow-300 text-black px-6 py-3 rounded-full font-bold text-sm hover:bg-yellow-200 transition">
+                    {{ btn.text }}
+                  </RouterLink>
+                  <a v-else :href="btn.href"
+                    class="bg-yellow-300 text-black px-6 py-3 rounded-full font-bold text-sm hover:bg-yellow-200 transition">
+                    {{ btn.text }}
+                  </a>
+                </template>
+                <template v-else>
+                  <RouterLink v-if="isInternal(btn.href)" :to="btn.href"
+                    class="border border-yellow-300 text-yellow-300 px-6 py-3 rounded-full font-bold text-sm hover:bg-yellow-300 hover:text-black transition">
+                    {{ btn.text }}
+                  </RouterLink>
+                  <a v-else :href="btn.href"
+                    class="border border-yellow-300 text-yellow-300 px-8 py-3 rounded-full font-bold inline-block hover:bg-yellow-300 hover:text-black transition">
+                    {{ btn.text }}
+                  </a>
+                </template>
               </template>
             </div>
           </div>
@@ -72,7 +90,10 @@ withDefaults(defineProps<{
             <span class="bg-yellow-300/20 text-yellow-300 text-xs px-2 py-1 rounded-full">{{ item.category }}</span>
             <h4 class="font-bold text-white text-lg mt-2">{{ item.title }}</h4>
             <p class="text-gray-400 text-sm">{{ item.summary }}</p>
-            <a :href="item.link" class="inline-block mt-3 text-yellow-300 text-sm font-bold border-b border-yellow-300/30">
+            <RouterLink v-if="isInternal(item.link)" :to="item.link" class="inline-block mt-3 text-yellow-300 text-sm font-bold border-b border-yellow-300/30">
+              查看详情 →
+            </RouterLink>
+            <a v-else :href="item.link" class="inline-block mt-3 text-yellow-300 text-sm font-bold border-b border-yellow-300/30">
               查看详情 →
             </a>
           </div>

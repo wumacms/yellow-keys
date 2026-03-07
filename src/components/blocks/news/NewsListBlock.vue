@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { RouterLink } from 'vue-router'
 import type { NewsItem, PaginationItem } from '@/types'
 
 withDefaults(defineProps<{
@@ -19,6 +20,8 @@ withDefaults(defineProps<{
     { page: 12, active: false }
   ]
 })
+
+const isInternal = (href?: string) => href && href.startsWith('/') && !href.startsWith('//')
 </script>
 
 <template>
@@ -36,7 +39,8 @@ withDefaults(defineProps<{
           <p class="text-sm text-gray-400 mb-3">{{ news.summary }}</p>
           <div class="flex justify-between items-center">
             <span class="text-gray-500 text-xs">{{ news.date }}</span>
-            <a :href="news.link" class="text-yellow-300 text-sm font-bold border-b border-yellow-300/30">阅读</a>
+            <RouterLink v-if="isInternal(news.link)" :to="news.link" class="text-yellow-300 text-sm font-bold border-b border-yellow-300/30">阅读</RouterLink>
+            <a v-else :href="news.link" class="text-yellow-300 text-sm font-bold border-b border-yellow-300/30">阅读</a>
           </div>
         </div>
       </div>
