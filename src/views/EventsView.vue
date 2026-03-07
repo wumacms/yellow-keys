@@ -1,5 +1,16 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
+import type { 
+  TitlePart, 
+  ActionLink, 
+  ImageData, 
+  TagItem, 
+  FaqItem, 
+  FeaturedEvent, 
+  SecondaryEvent, 
+  CalendarEvent, 
+  PastEvent 
+} from '@/types'
 import HeroBlock from '@/components/blocks/common/HeroBlock.vue'
 import FilterTagsBlock from '@/components/blocks/common/FilterTagsBlock.vue'
 import FeaturedEventsBlock from '@/components/blocks/events/FeaturedEventsBlock.vue'
@@ -8,7 +19,15 @@ import PastEventsBlock from '@/components/blocks/events/PastEventsBlock.vue'
 import FaqBlock from '@/components/blocks/common/FaqBlock.vue'
 import CtaBlock from '@/components/blocks/common/CtaBlock.vue'
 
-const heroData = ref({
+interface HeroData {
+  badge: string
+  title: TitlePart[]
+  description: string
+  buttons: ActionLink[]
+  image: ImageData
+}
+
+const heroData = ref<HeroData>({
   badge: ' 全年音乐活动 · 不止于课堂',
   title: [
     { text: '舞台已就绪，', highlight: false },
@@ -25,7 +44,12 @@ const heroData = ref({
   }
 })
 
-const filterData = ref({
+interface FilterData {
+  label: string
+  tags: TagItem[]
+}
+
+const filterData = ref<FilterData>({
   label: '活动类型 :',
   tags: [
     { label: '全部', active: true },
@@ -37,14 +61,22 @@ const filterData = ref({
   ]
 })
 
-const faqs = ref([
+const faqs = ref<FaqItem[]>([
   { question: '学员如何报名参加演出？', answer: '任课老师会提前1-2个月在班级群发布招募通知，填写报名表并提交演奏视频进行审核即可。' },
   { question: '非学员可以观摩活动吗？', answer: '绝大部分活动对外开放，但部分大师课旁听席位有限，需提前预约。公益演出免预约入场。' },
   { question: '活动会收取费用吗？', answer: '学员汇报音乐会、开放日等免费；大师课、音乐节等视情况收取少量成本费或划扣课时，具体见活动详情。' },
   { question: '如何获取最新活动提醒？', answer: '关注公众号“黄黑键音乐学校”或添加校区教务微信，每周推送活动日历。' }
 ])
 
-const ctaData = ref({
+interface CtaData {
+  badge: string
+  title: string
+  description: string
+  buttons: ActionLink[]
+  footerNote: string
+}
+
+const ctaData = ref<CtaData>({
   badge: '🎟️ 第一时间获取活动名额',
   title: '不错过任何精彩',
   description: '订阅活动通知，优先预约大师课/音乐会席位',
@@ -54,7 +86,13 @@ const ctaData = ref({
   ],
   footerNote: '或添加校区微信，备注“活动”'
 })
-const featuredEventsData = ref({
+
+interface FeaturedEventsData {
+  mainEvent: FeaturedEvent
+  secondaryEvents: SecondaryEvent[]
+}
+
+const featuredEventsData = ref<FeaturedEventsData>({
   mainEvent: {
     badge: '🎪 年度盛事 · 4月30日-5月2日',
     title: '黄黑键 · 首届春季原音乐节',
@@ -86,7 +124,17 @@ const featuredEventsData = ref({
   ]
 })
 
-const eventCalendarData = ref({
+interface EventCalendarData {
+  title: string
+  events: CalendarEvent[]
+  cta: {
+    text: string
+    href: string
+    icon: string
+  }
+}
+
+const eventCalendarData = ref<EventCalendarData>({
   title: '📅 四月活动日历',
   events: [
     {
@@ -151,7 +199,17 @@ const eventCalendarData = ref({
   }
 })
 
-const pastEventsData = ref({
+interface PastEventsData {
+  title: string
+  subtitle: string
+  pastEvents: PastEvent[]
+  cta: {
+    text: string
+    href: string
+  }
+}
+
+const pastEventsData = ref<PastEventsData>({
   title: '📸 往期精彩回顾',
   subtitle: '每一次登台，都是成长的见证',
   pastEvents: [

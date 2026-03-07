@@ -1,31 +1,21 @@
-<script setup>
-/**
- * 英雄区块组件属性
- * @property {string} badge - 小标签文本
- * @property {object[]} title - 分段标题数组，包含 text 和 highlight 标记
- * @property {string} description - 描述文本
- * @property {object[]} buttons - 按钮配置数组
- * @property {object} image - 图片对象，包含 src 和 alt
- */
+<script setup lang="ts">
 import { RouterLink } from 'vue-router'
-defineProps({
-  badge: String,
-  title: {
-    type: Array,
-    required: true
-  },
-  description: String,
-  buttons: {
-    type: Array,
-    default: () => []
-  },
-  image: {
-    type: Object,
-    required: true
-  }
-})
+import type { TitlePart, ActionLink, ImageData } from '@/types'
 
-const isInternal = (href) => href && href.startsWith('/')
+defineProps<{
+  /** 小标签文本 */
+  badge?: string
+  /** 分段标题数组，包含 text 和 highlight 标记 */
+  title: TitlePart[]
+  /** 描述文本 */
+  description?: string
+  /** 按钮配置数组 */
+  buttons?: ActionLink[]
+  /** 图片对象，包含 src 和 alt */
+  image: ImageData
+}>()
+
+const isInternal = (href?: string) => href && href.startsWith('/')
 </script>
 
 <template>

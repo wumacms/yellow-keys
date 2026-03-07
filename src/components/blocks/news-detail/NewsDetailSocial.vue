@@ -1,13 +1,9 @@
-<script setup>
-/**
- * 新闻详情社交分享区块组件属性
- * @property {string[]} tags - 文章相关标签列表
- */
-defineProps({
-  tags: {
-    type: Array,
-    default: () => []
-  }
+<script setup lang="ts">
+withDefaults(defineProps<{
+  /** 文章相关标签列表 */
+  tags: string[]
+}>(), {
+  tags: () => []
 })
 </script>
 

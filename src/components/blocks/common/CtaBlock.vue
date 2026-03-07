@@ -1,30 +1,26 @@
-<script setup>
-/**
- * CTA区块组件属性
- * @property {string} badge - 小标签文本
- * @property {string} title - 主标题文本
- * @property {string} description - 描述文本
- * @property {object[]} buttons - 按钮配置数组
- * @property {string} footerNote - 底部说明文本
- * @property {string} backgroundColor - 背景颜色 class
- */
+<script setup lang="ts">
 import { RouterLink } from 'vue-router'
-defineProps({
-  badge: String,
-  title: String,
-  description: String,
-  buttons: {
-    type: Array,
-    default: () => []
-  },
-  footerNote: String,
-  backgroundColor: {
-    type: String,
-    default: 'bg-yellow-300'
-  }
+import type { ActionLink } from '@/types'
+
+withDefaults(defineProps<{
+  /** 小标签文本 */
+  badge?: string
+  /** 主标题文本 */
+  title: string
+  /** 描述文本 */
+  description?: string
+  /** 按钮配置数组 */
+  buttons?: ActionLink[]
+  /** 底部说明文本 */
+  footerNote?: string
+  /** 背景颜色 class */
+  backgroundColor?: string
+}>(), {
+  buttons: () => [],
+  backgroundColor: 'bg-yellow-300'
 })
 
-const isInternal = (href) => href && href.startsWith('/')
+const isInternal = (href?: string) => href && href.startsWith('/')
 </script>
 
 <template>

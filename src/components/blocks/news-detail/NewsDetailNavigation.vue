@@ -1,13 +1,12 @@
-<script setup>
-/**
- * 新闻详情底部导航区块组件属性
- * @property {object} prevArticle - 上一篇文章信息配置
- * @property {object} nextArticle - 下一篇文章信息配置
- */
-defineProps({
-  prevArticle: Object,
-  nextArticle: Object
-})
+<script setup lang="ts">
+import type { LinkedArticle } from '@/types'
+
+defineProps<{
+  /** 上一篇文章信息配置 */
+  prevArticle?: LinkedArticle
+  /** 下一篇文章信息配置 */
+  nextArticle?: LinkedArticle
+}>()
 </script>
 
 <template>

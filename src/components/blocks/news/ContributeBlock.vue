@@ -1,28 +1,18 @@
-<script setup>
-/**
- * 投稿邀请区块组件属性
- * @property {string} title - 区块主标题
- * @property {string} description - 区块描述文本
- * @property {string} buttonText - 按钮文本
- * @property {string} link - 按钮链接
- */
-const props = defineProps({
-  title: {
-    type: String,
-    default: '📝 新闻/故事投稿'
-  },
-  description: {
-    type: String,
-    default: '如果你是学员家长、教师或音乐爱好者，欢迎投稿分享你与黄黑键的故事。入选将获得定制礼品。'
-  },
-  buttonText: {
-    type: String,
-    default: '投稿须知 & 联系编辑'
-  },
-  link: {
-    type: String,
-    default: '#'
-  }
+<script setup lang="ts">
+withDefaults(defineProps<{
+  /** 区块主标题 */
+  title?: string
+  /** 区块描述文本 */
+  description?: string
+  /** 按钮文本 */
+  buttonText?: string
+  /** 按钮链接 */
+  link?: string
+}>(), {
+  title: '📝 新闻/故事投稿',
+  description: '如果你是学员家长、教师 or 音乐爱好者，欢迎投稿分享你与黄黑键的故事。入选将获得定制礼品。',
+  buttonText: '投稿须知 & 联系编辑',
+  link: '#'
 })
 </script>
 

@@ -1,5 +1,14 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
+import type { 
+  TitlePart, 
+  ActionLink, 
+  ImageData, 
+  TagItem, 
+  FeatureItem, 
+  FaqItem, 
+  CampusItem 
+} from '@/types'
 import HeroBlock from '@/components/blocks/common/HeroBlock.vue'
 import FilterTagsBlock from '@/components/blocks/common/FilterTagsBlock.vue'
 import CampusGridBlock from '@/components/blocks/campuses/CampusGridBlock.vue'
@@ -8,7 +17,15 @@ import ImageTextSplitBlock from '@/components/blocks/common/ImageTextSplitBlock.
 import FaqBlock from '@/components/blocks/common/FaqBlock.vue'
 import CtaBlock from '@/components/blocks/common/CtaBlock.vue'
 
-const heroData = ref({
+interface HeroData {
+  badge: string
+  title: TitlePart[]
+  description: string
+  buttons: ActionLink[]
+  image: ImageData
+}
+
+const heroData = ref<HeroData>({
   badge: '📍 全国15+校区 · 持续扩展中',
   title: [
     { text: '在', highlight: false },
@@ -26,7 +43,12 @@ const heroData = ref({
   }
 })
 
-const filterData = ref({
+interface FilterData {
+  label: string
+  tags: TagItem[]
+}
+
+const filterData = ref<FilterData>({
   label: '选择城市 :',
   tags: [
     { label: '全部', active: true },
@@ -40,21 +62,27 @@ const filterData = ref({
   ]
 })
 
-const features = ref([
+const features = ref<FeatureItem[]>([
   { icon: '🎹', title: '演奏级钢琴', description: '全施坦威/雅马哈CFX/Boston三角琴，每月调律' },
   { icon: '🔇', title: '专业声学装修', description: '隔音琴房、可变混响音乐厅，录音棚级标准' },
   { icon: '📹', title: '智能教室系统', description: '每间教室配备摄像头，可回看练琴/上课视频' },
   { icon: '☕', title: '家长休息区', description: '免费咖啡、图书、琴童交流区，实时观看上课' }
 ])
 
-const faqs = ref([
+const faqs = ref<FaqItem[]>([
   { question: '不同校区的课程和收费一样吗？', answer: '课程体系、师资标准、收费全国统一。但部分校校区因场地成本可能有微小浮动，具体以校区报价为准。' },
-  { question: '可以跨校区上课吗？', answer: '可以。学员可在全国任意校区预约练琴或补课（需提前联系教务协调）。长期跨城可办理校区转移。' },
+  { question: '可以跨校区上课吗？', answer: '可以。学员可在全国任意校区预约练琴或补课（需提前联系教务协调）。长期跨城可办理校校转移。' },
   { question: '校区附近有停车场吗？', answer: '每个校区均临近地铁站，并配有停车位/合作停车场，详情可查看具体校区路线说明。' },
   { question: '新校区筹备期间可以报名吗？', answer: '可以。提前报名可享早鸟优惠，且可选择就近已开放校区上课，新校区开放后转回。' }
 ])
 
-const campusesData = ref({
+interface CampusesData {
+  title: string
+  subtitle: string
+  campuses: CampusItem[]
+}
+
+const campusesData = ref<CampusesData>({
   title: '全国校区 · 音乐地标',
   subtitle: '每个校区都是精心打造的音乐空间',
   campuses: [
@@ -115,7 +143,14 @@ const campusesData = ref({
   ]
 })
 
-const ctaData = ref({
+interface CtaData {
+  badge: string
+  title: string
+  description: string
+  buttons: ActionLink[]
+}
+
+const ctaData = ref<CtaData>({
   badge: '🏫 新校区开放中',
   title: '期待在你城市相见',
   description: '填写意向城市，新校区第一时间通知，并享创始学员优惠',

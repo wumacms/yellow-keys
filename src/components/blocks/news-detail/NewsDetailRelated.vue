@@ -1,13 +1,11 @@
-<script setup>
-/**
- * 新闻详情相关推荐区块组件属性
- * @property {object[]} relatedNews - 相关推荐新闻列表配置
- */
-defineProps({
-  relatedNews: {
-    type: Array,
-    default: () => []
-  }
+<script setup lang="ts">
+import type { RelatedNewsItem } from '@/types'
+
+withDefaults(defineProps<{
+  /** 相关推荐新闻列表配置 */
+  relatedNews: RelatedNewsItem[]
+}>(), {
+  relatedNews: () => []
 })
 </script>
 

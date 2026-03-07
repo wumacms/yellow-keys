@@ -1,15 +1,10 @@
-<script setup>
-/**
- * 数据统计区块组件属性
- * @property {object[]} stats - 统计数据列表配置
- */
-const props = defineProps({
-  stats: {
-    type: Array,
-    required: true,
-    default: () => []
-  }
-})
+<script setup lang="ts">
+import type { StatItem } from '@/types'
+
+defineProps<{
+  /** 统计数据列表配置 */
+  stats: StatItem[]
+}>()
 </script>
 
 <template>

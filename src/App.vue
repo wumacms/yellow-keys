@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { RouterView } from 'vue-router'
 import NavBlock from '@/components/blocks/common/NavBlock.vue'
 import FooterBlock from '@/components/blocks/common/FooterBlock.vue'

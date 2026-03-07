@@ -1,24 +1,17 @@
-<script setup>
-/**
- * 学员评价区块组件属性
- * @property {string} title - 区块主标题
- * @property {string} description - 区块描述文本
- * @property {object[]} testimonials - 评价列表配置
- */
-const props = defineProps({
-  title: {
-    type: String,
-    default: '他们的音乐蜕变'
-  },
-  description: {
-    type: String,
-    default: '来自真实学员和家长的声音'
-  },
-  testimonials: {
-    type: Array,
-    required: true,
-    default: () => []
-  }
+<script setup lang="ts">
+import type { Testimonial } from '@/types'
+
+withDefaults(defineProps<{
+  /** 区块主标题 */
+  title?: string
+  /** 区块描述文本 */
+  description?: string
+  /** 评价列表配置 */
+  testimonials: Testimonial[]
+}>(), {
+  title: '他们的音乐蜕变',
+  description: '来自真实学员和家长的声音',
+  testimonials: () => []
 })
 </script>
 

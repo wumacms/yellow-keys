@@ -1,20 +1,18 @@
-<script setup>
-/**
- * 特色功能区块组件属性
- * @property {object} header - 头部配置，包含 title 和 subtitle
- * @property {object[]} features - 功能列表，包含 icon, title, description
- * @property {number} columns - 网格列数
- */
-defineProps({
-  header: Object,
-  features: {
-    type: Array,
-    required: true
-  },
-  columns: {
-    type: Number,
-    default: 4
+<script setup lang="ts">
+import type { FeatureItem } from '@/types'
+
+withDefaults(defineProps<{
+  /** 头部配置 */
+  header?: {
+    title: string
+    subtitle?: string
   }
+  /** 功能列表 */
+  features: FeatureItem[]
+  /** 网格列数 */
+  columns?: number
+}>(), {
+  columns: 4
 })
 </script>
 

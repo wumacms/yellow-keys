@@ -1,5 +1,15 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
+import type { 
+  TitlePart, 
+  ActionLink, 
+  ImageData, 
+  FeatureItem, 
+  FaqItem, 
+  StatItem, 
+  Partner, 
+  Testimonial 
+} from '@/types'
 import HeroBlock from '@/components/blocks/common/HeroBlock.vue'
 import StatsBlock from '@/components/blocks/index/StatsBlock.vue'
 import PartnersBlock from '@/components/blocks/index/PartnersBlock.vue'
@@ -9,7 +19,14 @@ import TestimonialsBlock from '@/components/blocks/index/TestimonialsBlock.vue'
 import FaqBlock from '@/components/blocks/common/FaqBlock.vue'
 import CtaBlock from '@/components/blocks/common/CtaBlock.vue'
 
-const heroData = ref({
+interface HeroData {
+  title: TitlePart[]
+  description: string
+  buttons: ActionLink[]
+  image: ImageData
+}
+
+const heroData = ref<HeroData>({
   title: [
     { text: '即兴', highlight: true },
     { text: ' 你的第一首钢琴曲', highlight: false }
@@ -25,21 +42,27 @@ const heroData = ref({
   }
 })
 
-const features = ref([
+const features = ref<FeatureItem[]>([
   { icon: '🎼', title: '体系化课程', description: '从启蒙到专业，覆盖英皇/国内考级，乐理+演奏+视唱练耳融合。' },
   { icon: '📀', title: '智能陪练系统', description: '课后APP实时纠错，练习数据同步老师，家长随时掌握进度。' },
   { icon: '🎤', title: '年度音乐节', description: '所有学员登上Livehouse舞台，专业录制个人演出视频。' },
   { icon: '🎹', title: '演奏级琴房', description: '全施坦威/雅马哈三角琴教室，顶级声学装修，免费练琴。' }
 ])
 
-const faqs = ref([
+const faqs = ref<FaqItem[]>([
   { question: '零基础可以学吗？几岁开始？', answer: '设有3-6岁音乐启蒙、7-12岁少儿课程以及成人零基础班。从第一节课就能弹出小曲子。' },
   { question: '需要自己带乐器吗？', answer: '教室提供顶级乐器，练习区可免费预约。买乐器可享合作品牌内部折扣。' },
   { question: '有考级培训吗？通过率如何？', answer: '英皇/音协/上音考级指定报名点，通过率100%，良好率超70%。' },
   { question: '可以试听吗？', answer: '当然，免费预约一对一体验课或乐队公开课。文末点击预约。' }
 ])
 
-const ctaData = ref({
+interface CtaData {
+  title: string
+  description: string
+  buttons: ActionLink[]
+}
+
+const ctaData = ref<CtaData>({
   title: '让音乐成为你的第二语言',
   description: '免费试听30分钟，解锁你的音乐潜能',
   buttons: [
@@ -47,41 +70,47 @@ const ctaData = ref({
     { text: '课程咨询', href: '/courses', primary: false }
   ]
 })
-const stats = ref([
+const stats = ref<StatItem[]>([
   { value: '3000+', label: '在读学员' },
   { value: '98%', label: '续课率' },
   { value: '15+', label: '校区(沪/京/深)' },
   { value: '🏆 82', label: '年度奖项' }
 ])
 
-const partners = ref([
+const partners = ref<Partner[]>([
   {
     name: '施坦威',
-    logo: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=128&h=128&fit=crop'
+    logo: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=128&h=128&fit=crop',
+    role: '战略合作伙伴'
   },
   {
     name: '雅马哈',
-    logo: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=128&h=128&fit=crop'
+    logo: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=128&h=128&fit=crop',
+    role: '教学合作伙伴'
   },
   {
     name: '罗兰',
-    logo: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=128&h=128&fit=crop'
+    logo: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=128&h=128&fit=crop',
+    role: '数字化伙伴'
   },
   {
     name: '芬达',
-    logo: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=128&h=128&fit=crop'
+    logo: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=128&h=128&fit=crop',
+    role: '乐队课伙伴'
   },
   {
     name: '英皇考级',
-    logo: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=128&h=128&fit=crop'
+    logo: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=128&h=128&fit=crop',
+    role: '考级点'
   },
   {
     name: '舒尔',
-    logo: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=128&h=128&fit=crop'
+    logo: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=128&h=128&fit=crop',
+    role: '声学设备伙伴'
   }
 ])
 
-const testimonials = ref([
+const testimonials = ref<Testimonial[]>([
   {
     name: '周雨桐',
     role: '钢琴学员 · 8岁',

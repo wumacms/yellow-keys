@@ -1,5 +1,15 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
+import type { 
+  TitlePart, 
+  ActionLink, 
+  ImageData, 
+  TagItem, 
+  FeaturedNews, 
+  HotNewsItem, 
+  NewsItem, 
+  PaginationItem 
+} from '@/types'
 import HeroBlock from '@/components/blocks/common/HeroBlock.vue'
 import FilterTagsBlock from '@/components/blocks/common/FilterTagsBlock.vue'
 import FeaturedNewsBlock from '@/components/blocks/news/FeaturedNewsBlock.vue'
@@ -8,7 +18,15 @@ import ImageTextSplitBlock from '@/components/blocks/common/ImageTextSplitBlock.
 import NewsletterSubscribeBlock from '@/components/blocks/news/NewsletterSubscribeBlock.vue'
 import ContributeBlock from '@/components/blocks/news/ContributeBlock.vue'
 
-const heroData = ref({
+interface HeroData {
+  badge: string
+  title: TitlePart[]
+  description: string
+  buttons: ActionLink[]
+  image: ImageData
+}
+
+const heroData = ref<HeroData>({
   badge: '📰 黄黑键动态 · 音乐大小事',
   title: [
     { text: '新闻', highlight: true },
@@ -26,7 +44,12 @@ const heroData = ref({
   }
 })
 
-const filterData = ref({
+interface FilterData {
+  label: string
+  tags: TagItem[]
+}
+
+const filterData = ref<FilterData>({
   label: '新闻分类 :',
   tags: [
     { label: '全部', active: true },
@@ -37,7 +60,17 @@ const filterData = ref({
     { label: '考级/比赛', active: false }
   ]
 })
-const featuredNewsData = ref({
+
+interface FeaturedNewsData {
+  header: {
+    title: string
+    moreLink: string
+  }
+  featuredNews: FeaturedNews
+  hotNews: HotNewsItem[]
+}
+
+const featuredNewsData = ref<FeaturedNewsData>({
   header: {
     title: '🔥 热点 · 聚焦',
     moreLink: '#'
@@ -71,7 +104,13 @@ const featuredNewsData = ref({
   ]
 })
 
-const newsListData = ref({
+interface NewsListData {
+  title: string
+  newsItems: NewsItem[]
+  pagination: PaginationItem[]
+}
+
+const newsListData = ref<NewsListData>({
   title: '📰 最新新闻 · 一览',
   newsItems: [
     {
@@ -126,7 +165,16 @@ const newsListData = ref({
   ]
 })
 
-const newsletterData = ref({
+interface NewsletterData {
+  badge: string
+  title: string
+  description: string
+  placeholder: string
+  buttonText: string
+  footerNote: string
+}
+
+const newsletterData = ref<NewsletterData>({
   badge: '📬 新闻通讯',
   title: '订阅黄黑键动态',
   description: '每周精选新闻、活动预告、学员故事直达你的邮箱',
@@ -135,7 +183,14 @@ const newsletterData = ref({
   footerNote: '随时退订，我们承诺不滥用你的信息'
 })
 
-const contributeData = ref({
+interface ContributeData {
+  title: string
+  description: string
+  buttonText: string
+  link: string
+}
+
+const contributeData = ref<ContributeData>({
   title: '📝 新闻/故事投稿',
   description: '如果你是学员家长、教师或音乐爱好者，欢迎投稿分享你与黄黑键的故事。入选将获得定制礼品。',
   buttonText: '投稿须知 & 联系编辑',

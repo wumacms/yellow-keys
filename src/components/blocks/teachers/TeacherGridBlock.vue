@@ -1,32 +1,26 @@
-<script setup>
-/**
- * 教师展示网格组件属性
- * @property {string} title - 栏目主标题
- * @property {string} subtitle - 栏目副标题
- * @property {object[]} teachers - 教师列表数据
- * @property {object} cta - 底部行动项配置
- */
-const props = defineProps({
-  title: {
-    type: String,
-    default: '首席导师 · 艺术领路人'
-  },
-  subtitle: {
-    type: String,
-    default: '舞台上的演奏家，讲台上的引路人'
-  },
-  teachers: {
-    type: Array,
-    required: true,
-    default: () => []
-  },
-  cta: {
-    type: Object,
-    default: () => ({
-      text: '查看全部52位教师 →',
-      href: '#'
-    })
+<script setup lang="ts">
+import type { TeacherItem } from '@/types'
+
+withDefaults(defineProps<{
+  /** 栏目主标题 */
+  title?: string
+  /** 栏目副标题 */
+  subtitle?: string
+  /** 教师列表数据 */
+  teachers: TeacherItem[]
+  /** 底部行动项配置 */
+  cta?: {
+    text: string
+    href: string
   }
+}>(), {
+  title: '首席导师 · 艺术领路人',
+  subtitle: '舞台上的演奏家，讲台上的引路人',
+  teachers: () => [],
+  cta: () => ({
+    text: '查看全部52位教师 →',
+    href: '#'
+  })
 })
 </script>
 

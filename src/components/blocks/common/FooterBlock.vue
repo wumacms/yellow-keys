@@ -1,56 +1,35 @@
-<script setup>
-/**
- * 页脚区块组件属性
- * @property {object} brand - 品牌信息，包含 emoji, name, description, copyright
- * @property {object} campusInfo - 校区信息，包含 title, addresses
- * @property {object} contactInfo - 联系方式，包含 title, details
- * @property {object} qrCode - 二维码信息，包含 title, image, description
- * @property {string} footerNote - 底部寄语文本
- */
-const props = defineProps({
-  brand: {
-    type: Object,
-    default: () => ({
-      emoji: '🎵',
-      name: 'YELLOWKEYS',
-      description: '创意乐器培训 brand · 黄黑键音乐学校 · 激发每个孩子的音乐本能',
-      copyright: '© 2025 黄黑键音乐教育集团 保留一切权利'
-    })
-  },
-  campusInfo: {
-    type: Object,
-    default: () => ({
-      title: '总部校区',
-      addresses: [
-        '上海市徐汇区创意音乐谷B座',
-        '北京市朝阳区艺术大街108号',
-        '深圳市南山区后海汇L3'
-      ]
-    })
-  },
-  contactInfo: {
-    type: Object,
-    default: () => ({
-      title: '联系我们',
-      details: [
-        { label: '课程咨询', value: '400-6688-muse' },
-        { label: '合作', value: 'partner@yellowkeys.cn' },
-        { label: '投诉建议', value: 'support@yellowkeys.cn' }
-      ]
-    })
-  },
-  qrCode: {
-    type: Object,
-    default: () => ({
-      title: '公众号',
-      image: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=120&h=120&fit=crop',
-      description: '扫一扫 领体验课'
-    })
-  },
-  footerNote: {
-    type: String,
-    default: '用明亮黄与黑，弹奏你的故事。'
-  }
+<script setup lang="ts">
+import type { FooterData } from '@/types'
+
+withDefaults(defineProps<FooterData>(), {
+  brand: () => ({
+    emoji: '🎵',
+    name: 'YELLOWKEYS',
+    description: '创意乐器培训 brand · 黄黑键音乐学校 · 激发每个孩子的音乐本能',
+    copyright: '© 2025 黄黑键音乐教育集团 保留一切权利'
+  }),
+  campusInfo: () => ({
+    title: '总部校区',
+    addresses: [
+      '上海市徐汇区创意音乐谷B座',
+      '北京市朝阳区艺术大街108号',
+      '深圳市南山区后海汇L3'
+    ]
+  }),
+  contactInfo: () => ({
+    title: '联系我们',
+    details: [
+      { label: '课程咨询', value: '400-6688-muse' },
+      { label: '合作', value: 'partner@yellowkeys.cn' },
+      { label: '投诉建议', value: 'support@yellowkeys.cn' }
+    ]
+  }),
+  qrCode: () => ({
+    title: '公众号',
+    image: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=120&h=120&fit=crop',
+    description: '扫一扫 领体验课'
+  }),
+  footerNote: '用明亮黄与黑，弹奏你的故事。'
 })
 </script>
 

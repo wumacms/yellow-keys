@@ -1,4 +1,5 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
+
 const IndexView = () => import('../views/IndexView.vue')
 const CoursesView = () => import('../views/CoursesView.vue')
 const TeachersView = () => import('../views/TeachersView.vue')
@@ -7,7 +8,7 @@ const CampusesView = () => import('../views/CampusesView.vue')
 const NewsView = () => import('../views/NewsView.vue')
 const NewsDetailView = () => import('../views/NewsDetailView.vue')
 
-const routes = [
+const routes: RouteRecordRaw[] = [
     {
         path: '/',
         name: 'home',

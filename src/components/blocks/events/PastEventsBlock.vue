@@ -1,32 +1,26 @@
-<script setup>
-/**
- * 往期活动区块组件属性
- * @property {string} title - 栏目主标题
- * @property {string} subtitle - 栏目副标题
- * @property {object[]} pastEvents - 往期活动列表
- * @property {object} cta - 底部行动项配置
- */
-const props = defineProps({
-  title: {
-    type: String,
-    default: '📸 往期精彩回顾'
-  },
-  subtitle: {
-    type: String,
-    default: '每一次登台，都是成长的见证'
-  },
-  pastEvents: {
-    type: Array,
-    required: true,
-    default: () => []
-  },
-  cta: {
-    type: Object,
-    default: () => ({
-      text: '观看更多活动视频',
-      href: '#'
-    })
+<script setup lang="ts">
+import type { PastEvent } from '@/types'
+
+withDefaults(defineProps<{
+  /** 栏目主标题 */
+  title?: string
+  /** 栏目副标题 */
+  subtitle?: string
+  /** 往期活动列表 */
+  pastEvents: PastEvent[]
+  /** 底部行动项配置 */
+  cta?: {
+    text: string
+    href: string
   }
+}>(), {
+  title: '📸 往期精彩回顾',
+  subtitle: '每一次登台，都是成长的见证',
+  pastEvents: () => [],
+  cta: () => ({
+    text: '观看更多活动视频',
+    href: '#'
+  })
 })
 </script>
 

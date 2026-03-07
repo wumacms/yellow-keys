@@ -1,8 +1,8 @@
-<script setup>
+<script setup lang="ts">
 // 这里可以添加订阅逻辑的处理函数
 const handleSubscribe = () => {
-  // 处理订阅逻辑
-  console.log('Subscribe clicked')
+    // 处理订阅逻辑
+    console.log('Subscribe clicked')
 }
 </script>
 

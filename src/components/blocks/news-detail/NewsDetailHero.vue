@@ -1,23 +1,20 @@
-<script setup>
-/**
- * 新闻详情核心信息区块组件属性
- * @property {string} category - 文章分类
- * @property {string} date - 发布日期
- * @property {string} views - 阅读数量
- * @property {string} title - 文章大标题
- * @property {string} author - 采编作者
- * @property {string} location - 地点或校区
- * @property {string} bgImage - 背景图片 URL
- */
-defineProps({
-  category: String,
-  date: String,
-  views: String,
-  title: String,
-  author: String,
-  location: String,
-  bgImage: String
-})
+<script setup lang="ts">
+defineProps<{
+  /** 文章分类 */
+  category?: string
+  /** 发布日期 */
+  date?: string
+  /** 阅读数量 */
+  views?: string
+  /** 文章大标题 */
+  title: string
+  /** 采编作者 */
+  author?: string
+  /** 地点或校区 */
+  location?: string
+  /** 背景图片 URL */
+  bgImage?: string
+}>()
 </script>
 
 <template>
@@ -44,17 +41,17 @@ defineProps({
             </div>
             <!-- 文章分类标签 -->
             <div class="flex gap-3 items-center mb-4">
-                <span class="bg-yellow-300 text-black text-xs px-3 py-1 rounded-full font-bold">{{ category }}</span>
-                <span class="text-gray-200 text-sm">{{ date }}</span>
-                <span class="text-gray-200 text-sm">🔥 阅读 {{ views }}</span>
+                <span v-if="category" class="bg-yellow-300 text-black text-xs px-3 py-1 rounded-full font-bold">{{ category }}</span>
+                <span v-if="date" class="text-gray-200 text-sm">{{ date }}</span>
+                <span v-if="views" class="text-gray-200 text-sm">🔥 阅读 {{ views }}</span>
             </div>
             <!-- 主标题 (更大更突出) -->
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-yellow-300 leading-tight drop-shadow-lg">
                 {{ title }}</h1>
             <!-- 副标题/作者 -->
             <div class="flex items-center gap-4 mt-6 text-gray-200">
-                <span>📝 采编：{{ author }}</span>
-                <span>📍 {{ location }}</span>
+                <span v-if="author">📝 采编：{{ author }}</span>
+                <span v-if="location">📍 {{ location }}</span>
             </div>
         </div>
     </section>

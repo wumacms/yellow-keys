@@ -1,30 +1,23 @@
-<script setup>
-/**
- * 新闻列表区块组件属性
- * @property {string} title - 区块主标题
- * @property {object[]} newsItems - 新闻列表配置
- * @property {object[]} pagination - 分页配置
- */
-const props = defineProps({
-  title: {
-    type: String,
-    default: '📰 最新新闻 · 一览'
-  },
-  newsItems: {
-    type: Array,
-    required: true,
-    default: () => []
-  },
-  pagination: {
-    type: Array,
-    default: () => [
-      { page: 1, active: true },
-      { page: 2, active: false },
-      { page: 3, active: false },
-      { page: 4, active: false },
-      { page: 12, active: false }
-    ]
-  }
+<script setup lang="ts">
+import type { NewsItem, PaginationItem } from '@/types'
+
+withDefaults(defineProps<{
+  /** 区块主标题 */
+  title?: string
+  /** 新闻列表配置 */
+  newsItems: NewsItem[]
+  /** 分页配置 */
+  pagination?: PaginationItem[]
+}>(), {
+  title: '📰 最新新闻 · 一览',
+  newsItems: () => [],
+  pagination: () => [
+    { page: 1, active: true },
+    { page: 2, active: false },
+    { page: 3, active: false },
+    { page: 4, active: false },
+    { page: 12, active: false }
+  ]
 })
 </script>
 

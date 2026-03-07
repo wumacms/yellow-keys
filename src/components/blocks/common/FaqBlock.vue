@@ -1,16 +1,12 @@
-<script setup>
-/**
- * FAQ区块组件属性
- * @property {string} title - 区块标题
- * @property {object[]} faqs - 常见问题列表，包含 question 和 answer
- */
-defineProps({
-  title: String,
-  faqs: {
-    type: Array,
-    required: true
-  }
-})
+<script setup lang="ts">
+import type { FaqItem } from '@/types'
+
+defineProps<{
+  /** 区块标题 */
+  title?: string
+  /** 常见问题列表 */
+  faqs: FaqItem[]
+}>()
 </script>
 
 <template>

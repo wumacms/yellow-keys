@@ -1,24 +1,18 @@
-<script setup>
-/**
- * 新闻详情内容区块组件属性
- * @property {string[]} paragraphs - 文章段落列表
- * @property {string} quote - 引用文本
- * @property {string} quoteAuthor - 引用作者
- * @property {string} awardListTitle - 获奖名单标题
- * @property {string[]} awards - 获奖名单列表
- */
-defineProps({
-  paragraphs: {
-    type: Array,
-    required: true
-  },
-  quote: String,
-  quoteAuthor: String,
-  awardListTitle: String,
-  awards: {
-    type: Array,
-    default: () => []
-  }
+<script setup lang="ts">
+withDefaults(defineProps<{
+  /** 文章段落列表 */
+  paragraphs: string[]
+  /** 引用文本 */
+  quote?: string
+  /** 引用作者 */
+  quoteAuthor?: string
+  /** 获奖名单标题 */
+  awardListTitle?: string
+  /** 获奖名单列表 */
+  awards?: string[]
+}>(), {
+  paragraphs: () => [],
+  awards: () => []
 })
 </script>
 

@@ -1,24 +1,17 @@
-<script setup>
-/**
- * 教师故事案例区块组件属性
- * @property {string} title - 栏目主标题
- * @property {string} subtitle - 栏目副标题
- * @property {object[]} stories - 故事列表配置
- */
-const props = defineProps({
-  title: {
-    type: String,
-    default: '名师 · 育人故事'
-  },
-  subtitle: {
-    type: String,
-    default: '听听导师们的教学理念与学员成长'
-  },
-  stories: {
-    type: Array,
-    required: true,
-    default: () => []
-  }
+<script setup lang="ts">
+import type { TeacherStory } from '@/types'
+
+withDefaults(defineProps<{
+  /** 栏目主标题 */
+  title?: string
+  /** 栏目副标题 */
+  subtitle?: string
+  /** 故事列表配置 */
+  stories: TeacherStory[]
+}>(), {
+  title: '名师 · 育人故事',
+  subtitle: '听听导师们的教学理念与学员成长',
+  stories: () => []
 })
 </script>
 

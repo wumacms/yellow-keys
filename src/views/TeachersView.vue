@@ -1,5 +1,14 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
+import type { 
+  TitlePart, 
+  ActionLink, 
+  ImageData, 
+  TagItem, 
+  TeacherItem, 
+  FeatureItem, 
+  TeacherStory 
+} from '@/types'
 import HeroBlock from '@/components/blocks/common/HeroBlock.vue'
 import FilterTagsBlock from '@/components/blocks/common/FilterTagsBlock.vue'
 import TeacherGridBlock from '@/components/blocks/teachers/TeacherGridBlock.vue'
@@ -8,7 +17,15 @@ import ImageTextSplitBlock from '@/components/blocks/common/ImageTextSplitBlock.
 import TeacherStoriesBlock from '@/components/blocks/teachers/TeacherStoriesBlock.vue'
 import CtaBlock from '@/components/blocks/common/CtaBlock.vue'
 
-const heroData = ref({
+interface HeroData {
+  badge: string
+  title: TitlePart[]
+  description: string
+  buttons: ActionLink[]
+  image: ImageData
+}
+
+const heroData = ref<HeroData>({
   badge: '👑 演奏家导师团',
   title: [
     { text: '与', highlight: false },
@@ -26,7 +43,12 @@ const heroData = ref({
   }
 })
 
-const filterData = ref({
+interface FilterData {
+  label: string
+  tags: TagItem[]
+}
+
+const filterData = ref<FilterData>({
   label: '快速筛选 :',
   tags: [
     { label: '全部', active: true },
@@ -40,7 +62,17 @@ const filterData = ref({
   ]
 })
 
-const teacherGridData = ref({
+interface TeacherGridData {
+  title: string
+  subtitle: string
+  teachers: TeacherItem[]
+  cta: {
+    text: string
+    href: string
+  }
+}
+
+const teacherGridData = ref<TeacherGridData>({
   title: '首席导师 · 艺术领路人',
   subtitle: '舞台上的演奏家，讲台上的引路人',
   teachers: [
@@ -99,14 +131,20 @@ const teacherGridData = ref({
   }
 })
 
-const features = ref([
+const features = ref<FeatureItem[]>([
   { icon: '🎯', title: '舞台经验', description: '所有导师保持每年至少10场演出，把最新的舞台经验带回课堂。' },
   { icon: '📚', title: '自主研发教材', description: '结合国际体系与本土学员特点，教学法科学且有趣。' },
   { icon: '👥', title: '双师制辅导', description: '主课老师+助教练习课，确保每周练习问题及时解决。' },
   { icon: '🎓', title: '升学/考级规划', description: '导师均为国内外考级评委或音乐学院校友，精准指导升学。' }
 ])
 
-const teacherStoriesData = ref({
+interface TeacherStoriesData {
+  title: string
+  subtitle: string
+  stories: TeacherStory[]
+}
+
+const teacherStoriesData = ref<TeacherStoriesData>({
   title: '名师 · 育人故事',
   subtitle: '听听导师们的教学理念与学员成长',
   stories: [
@@ -134,7 +172,15 @@ const teacherStoriesData = ref({
   ]
 })
 
-const ctaData = ref({
+interface CtaData {
+  badge: string
+  title: string
+  description: string
+  buttons: ActionLink[]
+  footerNote: string
+}
+
+const ctaData = ref<CtaData>({
   badge: '✨ 免费体验名师一对一',
   title: '选择你的专属导师',
   description: '30分钟体验课，感受演奏级教师的魅力',

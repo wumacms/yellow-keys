@@ -1,24 +1,17 @@
-<script setup>
-/**
- * 校区网格展示组件属性
- * @property {string} title - 栏目主标题
- * @property {string} subtitle - 栏目副标题
- * @property {object[]} campuses - 校区列表数据
- */
-const props = defineProps({
-  title: {
-    type: String,
-    default: '全国校区 · 音乐地标'
-  },
-  subtitle: {
-    type: String,
-    default: '每个校区都是精心打造的音乐空间'
-  },
-  campuses: {
-    type: Array,
-    required: true,
-    default: () => []
-  }
+<script setup lang="ts">
+import type { CampusItem } from '@/types'
+
+withDefaults(defineProps<{
+  /** 栏目主标题 */
+  title?: string
+  /** 栏目副标题 */
+  subtitle?: string
+  /** 校区列表数据 */
+  campuses: CampusItem[]
+}>(), {
+  title: '全国校区 · 音乐地标',
+  subtitle: '每个校区都是精心打造的音乐空间',
+  campuses: () => []
 })
 </script>
 

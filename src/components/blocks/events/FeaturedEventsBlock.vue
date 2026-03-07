@@ -1,20 +1,13 @@
-<script setup>
-/**
- * 推荐活动区块组件属性
- * @property {object} mainEvent - 主推活动配置
- * @property {object[]} secondaryEvents - 次要活动数组配置
- */
-const props = defineProps({
-  mainEvent: {
-    type: Object,
-    required: true,
-    default: () => ({})
-  },
-  secondaryEvents: {
-    type: Array,
-    required: true,
-    default: () => []
-  }
+<script setup lang="ts">
+import type { FeaturedEvent, SecondaryEvent } from '@/types'
+
+withDefaults(defineProps<{
+  /** 主推活动配置 */
+  mainEvent: FeaturedEvent
+  /** 次要活动数组配置 */
+  secondaryEvents: SecondaryEvent[]
+}>(), {
+  secondaryEvents: () => []
 })
 </script>
 

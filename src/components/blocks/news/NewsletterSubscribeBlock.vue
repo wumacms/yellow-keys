@@ -1,38 +1,24 @@
-<script setup>
-/**
- * 新闻订阅区块组件属性
- * @property {string} badge - 小标签文本
- * @property {string} title - 区块主标题
- * @property {string} description - 区块描述文本
- * @property {string} placeholder - 邮箱输入框占位符
- * @property {string} buttonText - 订阅按钮文本
- * @property {string} footerNote - 底部说明文本
- */
-const props = defineProps({
-  badge: {
-    type: String,
-    default: '📬 新闻通讯'
-  },
-  title: {
-    type: String,
-    default: '订阅黄黑键动态'
-  },
-  description: {
-    type: String,
-    default: '每周精选新闻、活动预告、学员故事直达你的邮箱'
-  },
-  placeholder: {
-    type: String,
-    default: '你的邮箱地址'
-  },
-  buttonText: {
-    type: String,
-    default: '立即订阅'
-  },
-  footerNote: {
-    type: String,
-    default: '随时退订，我们承诺不滥用你的信息'
-  }
+<script setup lang="ts">
+withDefaults(defineProps<{
+  /** 小标签文本 */
+  badge?: string
+  /** 区块主标题 */
+  title?: string
+  /** 区块描述文本 */
+  description?: string
+  /** 邮箱输入框占位符 */
+  placeholder?: string
+  /** 订阅按钮文本 */
+  buttonText?: string
+  /** 底部说明文本 */
+  footerNote?: string
+}>(), {
+  badge: '📬 新闻通讯',
+  title: '订阅黄黑键动态',
+  description: '每周精选新闻、活动预告、学员故事直达你的邮箱',
+  placeholder: '你的邮箱地址',
+  buttonText: '立即订阅',
+  footerNote: '随时退订，我们承诺不滥用你的信息'
 })
 </script>
 

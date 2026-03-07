@@ -1,24 +1,17 @@
-<script setup>
-/**
- * 合作伙伴区块组件属性
- * @property {string} title - 区块主标题
- * @property {string} description - 区块描述文本
- * @property {object[]} partners - 合作伙伴列表配置
- */
-const props = defineProps({
-  title: {
-    type: String,
-    default: '我们的音乐伙伴'
-  },
-  description: {
-    type: String,
-    default: '全球顶级乐器品牌与教育机构官方合作'
-  },
-  partners: {
-    type: Array,
-    required: true,
-    default: () => []
-  }
+<script setup lang="ts">
+import type { Partner } from '@/types'
+
+withDefaults(defineProps<{
+  /** 区块主标题 */
+  title?: string
+  /** 区块描述文本 */
+  description?: string
+  /** 合作伙伴列表配置 */
+  partners: Partner[]
+}>(), {
+  title: '我们的音乐伙伴',
+  description: '全球顶级乐器品牌与教育机构官方合作',
+  partners: () => []
 })
 </script>
 

@@ -1,38 +1,30 @@
-<script setup>
-/**
- * 导航栏区块组件属性
- * @property {object} logo - Logo配置，包含 emoji, text1, text2, href
- * @property {object[]} menuItems - 菜单项数组，包含 name 和 href
- * @property {object} cta - 右侧 CTA 按钮配置，包含 text 和 href
- */
+<script setup lang="ts">
 import { RouterLink, useRoute } from 'vue-router'
+import type { ActionLink, MenuItem, NavLogo } from '@/types'
 
 const route = useRoute()
 
-defineProps({
-  logo: {
-    type: Object,
-    default: () => ({
-      emoji: '🎵',
-      text1: 'YELLOW',
-      text2: 'KEYS',
-      href: '/'
-    })
-  },
-  menuItems: {
-    type: Array,
-    required: true
-  },
-  cta: {
-    type: Object,
-    default: () => ({
-      text: '免费试听课',
-      href: '/courses'
-    })
-  }
+withDefaults(defineProps<{
+  /** Logo配置 */
+  logo?: NavLogo
+  /** 菜单项数组 */
+  menuItems: MenuItem[]
+  /** 右侧 CTA 按钮配置 */
+  cta?: ActionLink
+}>(), {
+  logo: () => ({
+    emoji: '🎵',
+    text1: 'YELLOW',
+    text2: 'KEYS',
+    href: '/'
+  }),
+  cta: () => ({
+    text: '免费试听课',
+    href: '/courses'
+  })
 })
 
-const isActive = (path) => {
+const isActive = (path: string) => {
   if (path === '/' && route.path === '/') return true
   if (path !== '/' && route.path.startsWith(path)) return true
   return false

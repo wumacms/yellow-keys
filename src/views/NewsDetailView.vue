@@ -1,5 +1,9 @@
-<script setup>
+<script setup lang="ts">
 import { reactive } from 'vue'
+import type { 
+  LinkedArticle, 
+  RelatedNewsItem 
+} from '@/types'
 import NewsDetailHero from '@/components/blocks/news-detail/NewsDetailHero.vue'
 import NewsDetailContent from '@/components/blocks/news-detail/NewsDetailContent.vue'
 import NewsDetailSocial from '@/components/blocks/news-detail/NewsDetailSocial.vue'
@@ -7,8 +11,41 @@ import NewsDetailNavigation from '@/components/blocks/news-detail/NewsDetailNavi
 import NewsDetailRelated from '@/components/blocks/news-detail/NewsDetailRelated.vue'
 import NewsDetailFooterAction from '@/components/blocks/news-detail/NewsDetailFooterAction.vue'
 
+interface ArticleHero {
+  category: string
+  date: string
+  views: string
+  title: string
+  author: string
+  location: string
+  bgImage: string
+}
+
+interface ArticleContent {
+  paragraphs: string[]
+  quote: string
+  quoteAuthor: string
+  awardListTitle: string
+  awards: string[]
+}
+
+interface ArticleNavigation {
+  prevArticle: LinkedArticle
+  nextArticle: LinkedArticle
+}
+
+interface ArticleData {
+  hero: ArticleHero
+  content: ArticleContent
+  social: {
+    tags: string[]
+  }
+  navigation: ArticleNavigation
+  relatedNews: RelatedNewsItem[]
+}
+
 // 新闻详情数据
-const articleData = reactive({
+const articleData = reactive<ArticleData>({
   hero: {
     category: '🏆 学员佳绩',
     date: '2025.03.28',

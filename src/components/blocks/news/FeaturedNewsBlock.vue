@@ -1,28 +1,22 @@
-<script setup>
-/**
- * 置顶新闻区块组件属性
- * @property {object} header - 头部配置，包含 title 和 moreLink
- * @property {object} featuredNews - 焦点新闻配置
- * @property {object[]} hotNews - 热点新闻列表配置
- */
-const props = defineProps({
-  header: {
-    type: Object,
-    default: () => ({
-      title: '🔥 热点 · 聚焦',
-      moreLink: '#'
-    })
-  },
-  featuredNews: {
-    type: Object,
-    required: true,
-    default: () => ({})
-  },
-  hotNews: {
-    type: Array,
-    required: true,
-    default: () => []
+<script setup lang="ts">
+import type { FeaturedNews, HotNewsItem } from '@/types'
+
+withDefaults(defineProps<{
+  /** 头部配置 */
+  header?: {
+    title: string
+    moreLink: string
   }
+  /** 焦点新闻配置 */
+  featuredNews: FeaturedNews
+  /** 热点新闻列表配置 */
+  hotNews: HotNewsItem[]
+}>(), {
+  header: () => ({
+    title: '🔥 热点 · 聚焦',
+    moreLink: '#'
+  }),
+  hotNews: () => []
 })
 </script>
 

@@ -1,5 +1,14 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
+import type { 
+  TitlePart, 
+  ActionLink, 
+  ImageData, 
+  TagItem, 
+  CourseCategory, 
+  CourseItem, 
+  FaqItem 
+} from '@/types'
 import HeroBlock from '@/components/blocks/common/HeroBlock.vue'
 import FilterTagsBlock from '@/components/blocks/common/FilterTagsBlock.vue'
 import CourseCategoriesBlock from '@/components/blocks/courses/CourseCategoriesBlock.vue'
@@ -8,9 +17,15 @@ import CourseListBlock from '@/components/blocks/courses/CourseListBlock.vue'
 import FaqBlock from '@/components/blocks/common/FaqBlock.vue'
 import CtaBlock from '@/components/blocks/common/CtaBlock.vue'
 
+interface HeroData {
+  badge: string
+  title: TitlePart[]
+  description: string
+  buttons: ActionLink[]
+  image: ImageData
+}
 
-
-const heroData = ref({
+const heroData = ref<HeroData>({
   badge: '🎹 全体系 · 从兴趣到专业',
   title: [
     { text: '用', highlight: false },
@@ -27,16 +42,22 @@ const heroData = ref({
   }
 })
 
-const filterTags = ref([
+const filterTags = ref<TagItem[]>([
   { label: '🎹 钢琴 · 键盘', active: false },
   { label: '🎸 吉他 · 贝斯', active: false },
   { label: '🥁 鼓 · 打击乐', active: false },
-  { label: '� 声乐 · 合唱', active: false },
+  { label: '🎤 声乐 · 合唱', active: false },
   { label: '🎻 弦乐 · 管乐', active: false },
   { label: '🎼 乐理 · 即兴', active: false }
 ])
 
-const courseCategoriesData = ref({
+interface CourseCategoriesData {
+  title: string
+  subtitle: string
+  categories: CourseCategory[]
+}
+
+const courseCategoriesData = ref<CourseCategoriesData>({
   title: '四大课程板块',
   subtitle: '全龄覆盖 · 科学分阶',
   categories: [
@@ -67,7 +88,18 @@ const courseCategoriesData = ref({
   ]
 })
 
-const courseListData = ref({
+interface CourseListData {
+  title: string
+  subtitle: string
+  courses: CourseItem[]
+  cta: {
+    text: string
+    href: string
+    icon: string
+  }
+}
+
+const courseListData = ref<CourseListData>({
   title: '全课程一览',
   subtitle: '每个孩子/成人都能找到自己的音乐方向',
   courses: [
@@ -88,14 +120,22 @@ const courseListData = ref({
   }
 })
 
-const faqs = ref([
+const faqs = ref<FaqItem[]>([
   { question: '如何选择适合我/孩子的课程？', answer: '入学前提供一对一课程顾问+专业老师测评，根据年龄、音乐基础、兴趣目标推荐最适合的班型。' },
   { question: '课程费用怎么算？有套餐吗？', answer: '季度/年度课包享受优惠，平均单价180-350元/节（一对一）。乐队小组课人均更低。免费体验课现场报价。' },
   { question: '缺课或请假怎么办？', answer: '每月有2次补课机会，可平行班插班或预约一对一补课。乐队课提供教学视频自学+线上指导。' },
   { question: '一定要买乐器才能上课吗？', answer: '所有教室提供上课乐器，练习区可免费预约。如需购买，合作品牌提供学学员员专属折扣。' }
 ])
 
-const ctaData = ref({
+interface CtaData {
+  badge: string
+  title: string
+  description: string
+  buttons: ActionLink[]
+  footerNote: string
+}
+
+const ctaData = ref<CtaData>({
   badge: '🎧 所有课程均享免费试听',
   title: '找到你的第一节课',
   description: '30分钟体验课，零基础也可以弹出一首小曲',
@@ -105,8 +145,6 @@ const ctaData = ref({
   ],
   footerNote: '或拨打 400-6688-muse 工作日9:00-21:00'
 })
-
-
 </script>
 
 <template>

@@ -1,16 +1,12 @@
-<script setup>
-/**
- * 标签过滤区块组件属性
- * @property {string} label - 过滤标签的前缀文本
- * @property {object[]} tags - 标签数组，包含 label 和 active 状态
- */
-defineProps({
-  label: String,
-  tags: {
-    type: Array,
-    required: true
-  }
-})
+<script setup lang="ts">
+import type { TagItem } from '@/types'
+
+defineProps<{
+  /** 过滤标签的前缀文本 */
+  label?: string
+  /** 标签数组 */
+  tags: TagItem[]
+}>()
 </script>
 
 <template>

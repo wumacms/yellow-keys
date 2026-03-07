@@ -1,28 +1,25 @@
-<script setup>
-/**
- * 活动日历区块组件属性
- * @property {string} title - 栏目主标题
- * @property {object[]} events - 活动数据列表
- * @property {object} cta - 底部行动项配置
- */
-const props = defineProps({
-  title: {
-    type: String,
-    default: '📅 四月活动日历'
-  },
-  events: {
-    type: Array,
-    required: true,
-    default: () => []
-  },
-  cta: {
-    type: Object,
-    default: () => ({
-      text: '下载四月活动日历',
-      href: '#',
-      icon: '📆'
-    })
+<script setup lang="ts">
+import type { CalendarEvent } from '@/types'
+
+withDefaults(defineProps<{
+  /** 栏目主标题 */
+  title?: string
+  /** 活动数据列表 */
+  events: CalendarEvent[]
+  /** 底部行动项配置 */
+  cta?: {
+    text: string
+    href: string
+    icon?: string
   }
+}>(), {
+  title: '📅 四月活动日历',
+  events: () => [],
+  cta: () => ({
+    text: '下载四月活动日历',
+    href: '#',
+    icon: '📆'
+  })
 })
 </script>
 

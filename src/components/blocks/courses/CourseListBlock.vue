@@ -1,33 +1,28 @@
-<script setup>
-/**
- * 课程列表组件属性
- * @property {string} title - 栏目主标题
- * @property {string} subtitle - 栏目副标题
- * @property {object[]} courses - 课程列表数据
- * @property {object} cta - 底部行动项配置
- */
-const props = defineProps({
-  title: {
-    type: String,
-    default: '全课程一览'
-  },
-  subtitle: {
-    type: String,
-    default: '每个孩子/成人都能找到自己的音乐方向'
-  },
-  courses: {
-    type: Array,
-    required: true,
-    default: () => []
-  },
-  cta: {
-    type: Object,
-    default: () => ({
-      text: '下载详细课程手册',
-      href: '#',
-      icon: '📥'
-    })
+<script setup lang="ts">
+import type { CourseItem } from '@/types'
+
+withDefaults(defineProps<{
+  /** 栏目主标题 */
+  title?: string
+  /** 栏目副标题 */
+  subtitle?: string
+  /** 课程列表数据 */
+  courses: CourseItem[]
+  /** 底部行动项配置 */
+  cta?: {
+    text: string
+    href: string
+    icon?: string
   }
+}>(), {
+  title: '全课程一览',
+  subtitle: '每个孩子/成人都能找到自己的音乐方向',
+  courses: () => [],
+  cta: () => ({
+    text: '下载详细课程手册',
+    href: '#',
+    icon: '📥'
+  })
 })
 </script>
 

@@ -1,28 +1,23 @@
-<script setup>
-/**
- * 图文分割组件属性
- * @property {string} badge - 预留的小标签文本
- * @property {string} title - 主标题文本
- * @property {string} description - 描述文本
- * @property {object} image - 图片对象，包含 src 和 alt
- * @property {string[]} stats - 统计信息或要点列表
- * @property {object[]} cta - 按钮配置数组
- * @property {boolean} reversed - 是否反向排列（图片在右）
- */
-defineProps({
-  badge: String,
-  title: String,
-  description: String,
-  image: {
-    type: Object,
-    required: true
-  },
-  stats: Array,
-  cta: Array,
-  reversed: {
-    type: Boolean,
-    default: false
-  }
+<script setup lang="ts">
+import type { ActionLink, ImageData } from '@/types'
+
+withDefaults(defineProps<{
+  /** 预留的小标签文本 */
+  badge?: string
+  /** 主标题文本 */
+  title: string
+  /** 描述文本 */
+  description?: string
+  /** 图片对象 */
+  image: ImageData
+  /** 统计信息或要点列表 */
+  stats?: string[]
+  /** 按钮配置数组 */
+  cta?: ActionLink[]
+  /** 是否反向排列（图片在右） */
+  reversed?: boolean
+}>(), {
+  reversed: false
 })
 </script>
 

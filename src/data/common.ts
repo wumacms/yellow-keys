@@ -1,4 +1,6 @@
-export const menuItems = [
+import type { MenuItem, FooterData } from '../types'
+
+export const menuItems: MenuItem[] = [
     { name: '首页', href: '/' },
     { name: '课程', href: '/courses' },
     { name: '名师', href: '/teachers' },
@@ -7,7 +9,7 @@ export const menuItems = [
     { name: '新闻', href: '/news' }
 ]
 
-export const footerData = {
+export const footerData: FooterData = {
     brand: {
         emoji: '🎵',
         name: 'YELLOWKEYS',
