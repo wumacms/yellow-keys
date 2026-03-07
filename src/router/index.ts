@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHashHistory, type RouteRecordRaw } from 'vue-router'
 
 const IndexView = () => import('../views/IndexView.vue')
 const CoursesView = () => import('../views/CoursesView.vue')
@@ -47,7 +47,7 @@ const routes: RouteRecordRaw[] = [
 ]
 
 const router = createRouter({
-    history: createWebHistory(import.meta.env.BASE_URL),
+    history: createWebHashHistory(),
     routes,
     scrollBehavior() {
         // 每次跳转页面回到顶部
