@@ -5,6 +5,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+    base: '/yellow-keys/',
     plugins: [vue(), tailwindcss()],
     server: {
         port: 3000,
