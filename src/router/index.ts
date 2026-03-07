@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory, type RouteRecordRaw } from 'vue-router'
+import type { RouteRecordRaw } from 'vue-router'
 
 const IndexView = () => import('../views/IndexView.vue')
 const CoursesView = () => import('../views/CoursesView.vue')
@@ -8,7 +8,7 @@ const CampusesView = () => import('../views/CampusesView.vue')
 const NewsView = () => import('../views/NewsView.vue')
 const NewsDetailView = () => import('../views/NewsDetailView.vue')
 
-const routes: RouteRecordRaw[] = [
+export const routes: RouteRecordRaw[] = [
     {
         path: '/',
         name: 'home',
@@ -45,14 +45,3 @@ const routes: RouteRecordRaw[] = [
         component: NewsDetailView
     }
 ]
-
-const router = createRouter({
-    history: createWebHashHistory(),
-    routes,
-    scrollBehavior() {
-        // 每次跳转页面回到顶部
-        return { top: 0 }
-    }
-})
-
-export default router
