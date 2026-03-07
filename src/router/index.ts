@@ -12,36 +12,43 @@ export const routes: RouteRecordRaw[] = [
     {
         path: '/',
         name: 'home',
+        alias: '/index.html',
         component: IndexView
     },
     {
         path: '/courses',
         name: 'courses',
+        alias: '/courses.html',
         component: CoursesView
     },
     {
         path: '/teachers',
         name: 'teachers',
+        alias: '/teachers.html',
         component: TeachersView
     },
     {
         path: '/events',
         name: 'events',
+        alias: '/events.html',
         component: EventsView
     },
     {
         path: '/campuses',
         name: 'campuses',
+        alias: '/campuses.html',
         component: CampusesView
     },
     {
         path: '/news',
         name: 'news',
+        alias: '/news.html',
         component: NewsView
     },
     {
         path: '/news-detail',
         name: 'news-detail',
+        alias: '/news-detail.html',
         component: NewsDetailView
     }
 ]
