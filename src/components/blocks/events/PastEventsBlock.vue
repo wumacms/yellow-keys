@@ -26,29 +26,30 @@ withDefaults(defineProps<{
 
 <template>
   <!-- 5. 往期活动回顾 (左文右图+案例风格, 展示精彩瞬间) 鼓励用户参与未来活动 -->
-  <section class="bg-black py-20">
+  <section class="bg-white dark:bg-black py-20 transition-colors duration-500">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-black text-yellow-300">{{ title }}</h2>
-        <p class="text-gray-400 text-lg mt-2">{{ subtitle }}</p>
+        <h2 class="text-3xl md:text-4xl font-black text-yellow-600 dark:text-yellow-300 transition-colors duration-500">{{ title }}</h2>
+        <p class="text-gray-600 dark:text-gray-400 text-lg mt-2">{{ subtitle }}</p>
       </div>
       <div class="grid md:grid-cols-3 gap-6">
         <div v-for="(event, index) in pastEvents" :key="index"
-          class="bg-zinc-900 rounded-3xl overflow-hidden border border-yellow-300/20">
+          class="bg-gray-50 dark:bg-zinc-900 rounded-3xl overflow-hidden border border-gray-100 dark:border-yellow-300/20 shadow-sm transition-all duration-500">
           <img :src="event.image" :alt="event.title" class="h-56 w-full object-cover">
-          <div class="p-4 text-white">
-            <span class="text-yellow-300 text-sm font-bold">{{ event.date }}</span>
-            <h4 class="font-bold text-white">{{ event.title }}</h4>
-            <p class="text-xs text-gray-400 mt-1">{{ event.description }}</p>
+          <div class="p-4 text-gray-900 dark:text-white">
+            <span class="text-yellow-600 dark:text-yellow-300 text-sm font-bold transition-colors duration-500">{{ event.date }}</span>
+            <h4 class="font-bold text-gray-900 dark:text-white">{{ event.title }}</h4>
+            <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">{{ event.description }}</p>
           </div>
         </div>
       </div>
       <div class="text-center mt-10">
         <a :href="cta.href"
-          class="border-2 border-yellow-300 text-yellow-300 px-8 py-3 rounded-full font-bold inline-block hover:bg-yellow-300 hover:text-black transition">
+          class="border-2 border-yellow-500 dark:border-yellow-300 text-yellow-600 dark:text-yellow-300 px-8 py-3 rounded-full font-bold inline-block hover:bg-yellow-500 dark:hover:bg-yellow-300 hover:text-white dark:hover:text-black transition-all duration-300 shadow-sm">
           📺 {{ cta.text }}
         </a>
       </div>
     </div>
   </section>
+
 </template>

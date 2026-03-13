@@ -8,6 +8,7 @@
 
 - ⚡ **Vite 7** - 极速的开发与构建工具，利用原生 ESM 优势。
 - 🎨 **Tailwind CSS 4** - 使用最新的配置方式（Vite 插件集成）和现代化 CSS 工具。
+- 🌗 **主题切换 (Dark/Light Mode)** - 全站适配深色与浅色模式，支持一键切换并自动持久化用户偏好。
 - 📦 **Vue 3 (Composition API)** - 采用 `<script setup lang="ts">` 语法，逻辑更清晰。
 - 🛡️ **TypeScript** - 全程类型守护，显著提升代码健壮性与开发体验。
 - 🧩 **组件化区块设计** - 页面由可复用的 `Blocks` 组成（如 Hero, Features, Testimonials 等），易于扩展和维护。
@@ -30,6 +31,7 @@
 │   ├── assets/       # 静态资源（图片、字体等）
 │   ├── components/   # 组件库
 │   │   └── blocks/     # 业务功能块（按页面/功能划分子目录）
+│   ├── composables/  # 组合式函数（如主题切换 useTheme）
 │   ├── data/         # 静态数据源（JSON/TS 格式）
 │   ├── router/       # Vue Router 路由配置 (index.ts)
 │   ├── types/        # TypeScript 类型声明定义

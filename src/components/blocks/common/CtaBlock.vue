@@ -24,7 +24,7 @@ const isInternal = (href?: string) => href && href.startsWith('/')
 </script>
 
 <template>
-  <section :class="[backgroundColor, 'py-16']">
+  <section :class="[backgroundColor, 'py-16 transition-colors duration-500 dark:bg-yellow-400']">
     <div class="max-w-3xl mx-auto text-center px-4">
       <span v-if="badge" class="text-black bg-white/30 px-3 py-1 rounded-full text-sm font-bold">{{ badge }}</span>
       <h2 class="text-4xl md:text-5xl font-black text-black mt-6 mb-4">{{ title }}</h2>
@@ -33,21 +33,21 @@ const isInternal = (href?: string) => href && href.startsWith('/')
         <template v-for="(btn, index) in buttons" :key="index">
           <template v-if="btn.primary">
             <RouterLink v-if="isInternal(btn.href)" :to="btn.href"
-              class="bg-black text-yellow-300 px-10 py-4 rounded-full font-bold text-xl shadow-2xl hover:bg-zinc-900 transition">
+              class="bg-black text-yellow-300 px-10 py-4 rounded-full font-bold text-xl shadow-2xl hover:bg-zinc-900 transition-all duration-300 transform hover:scale-105">
               {{ btn.text }}
             </RouterLink>
             <a v-else :href="btn.href"
-              class="bg-black text-yellow-300 px-10 py-4 rounded-full font-bold text-xl shadow-2xl hover:bg-zinc-900 transition">
+              class="bg-black text-yellow-300 px-10 py-4 rounded-full font-bold text-xl shadow-2xl hover:bg-zinc-900 transition-all duration-300 transform hover:scale-105">
               {{ btn.text }}
             </a>
           </template>
           <template v-else>
             <RouterLink v-if="isInternal(btn.href)" :to="btn.href"
-              class="bg-transparent border-4 border-black text-black px-10 py-4 rounded-full font-bold text-xl hover:bg-black hover:text-yellow-300 transition">
+              class="bg-transparent border-4 border-black text-black px-10 py-4 rounded-full font-bold text-xl hover:bg-black hover:text-yellow-300 transition-all duration-300">
               {{ btn.text }}
             </RouterLink>
             <a v-else :href="btn.href"
-              class="bg-transparent border-4 border-black text-black px-10 py-4 rounded-full font-bold text-xl hover:bg-black hover:text-yellow-300 transition">
+              class="bg-transparent border-4 border-black text-black px-10 py-4 rounded-full font-bold text-xl hover:bg-black hover:text-yellow-300 transition-all duration-300">
               {{ btn.text }}
             </a>
           </template>
@@ -56,4 +56,5 @@ const isInternal = (href?: string) => href && href.startsWith('/')
       <p v-if="footerNote" class="text-sm text-black/60 mt-6">{{ footerNote }}</p>
     </div>
   </section>
+
 </template>

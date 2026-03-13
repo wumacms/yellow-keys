@@ -34,22 +34,22 @@ withDefaults(defineProps<FooterData>(), {
 </script>
 
 <template>
-  <footer class="bg-black border-t border-yellow-300/30 pt-16 pb-8">
+  <footer class="bg-zinc-50 dark:bg-black border-t border-gray-100 dark:border-yellow-300/30 pt-16 pb-8 transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
         <!-- brand + logo -->
         <div class="lg:col-span-2">
           <div class="flex items-center gap-2 mb-4">
             <span class="text-4xl">{{ brand.emoji }}</span>
-            <span class="text-2xl font-black text-yellow-300">{{ brand.name }}</span>
+            <span class="text-2xl font-black text-yellow-600 dark:text-yellow-300">{{ brand.name }}</span>
           </div>
-          <p class="text-gray-400 text-sm max-w-xs">{{ brand.description }}</p>
+          <p class="text-gray-600 dark:text-gray-400 text-sm max-w-xs">{{ brand.description }}</p>
           <p class="text-gray-500 text-xs mt-4">{{ brand.copyright }}</p>
         </div>
         <!-- 公司地址 -->
         <div>
-          <h4 class="text-yellow-300 font-bold mb-4">{{ campusInfo.title }}</h4>
-          <p class="text-gray-400 text-sm">
+          <h4 class="text-yellow-600 dark:text-yellow-300 font-bold mb-4">{{ campusInfo.title }}</h4>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">
             <template v-for="(addr, index) in campusInfo.addresses" :key="index">
               {{ addr }}<br v-if="index !== campusInfo.addresses.length - 1">
             </template>
@@ -57,8 +57,8 @@ withDefaults(defineProps<FooterData>(), {
         </div>
         <!-- 联系方式 -->
         <div>
-          <h4 class="text-yellow-300 font-bold mb-4">{{ contactInfo.title }}</h4>
-          <p class="text-gray-400 text-sm">
+          <h4 class="text-yellow-600 dark:text-yellow-300 font-bold mb-4">{{ contactInfo.title }}</h4>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">
             <template v-for="(item, index) in contactInfo.details" :key="index">
               {{ item.label }}：{{ item.value }}<br v-if="index !== contactInfo.details.length - 1">
             </template>
@@ -66,16 +66,17 @@ withDefaults(defineProps<FooterData>(), {
         </div>
         <!-- 微信公众号二维码 -->
         <div>
-          <h4 class="text-yellow-300 font-bold mb-4">{{ qrCode.title }}</h4>
-          <div class="bg-zinc-900 p-3 rounded-xl inline-block border border-yellow-300/40">
-            <img :src="qrCode.image" class="w-24 h-24 rounded-lg grayscale" :alt="qrCode.title">
+          <h4 class="text-yellow-600 dark:text-yellow-300 font-bold mb-4">{{ qrCode.title }}</h4>
+          <div class="bg-white dark:bg-zinc-900 p-3 rounded-xl inline-block border border-gray-200 dark:border-yellow-300/40">
+            <img :src="qrCode.image" class="w-24 h-24 rounded-lg dark:grayscale" :alt="qrCode.title">
           </div>
           <p class="text-gray-500 text-xs mt-2">{{ qrCode.description }}</p>
         </div>
       </div>
-      <div class="text-center text-gray-600 text-sm border-t border-yellow-300/20 mt-12 pt-6">
+      <div class="text-center text-gray-500 dark:text-gray-600 text-sm border-t border-gray-200 dark:border-yellow-300/20 mt-12 pt-6">
         {{ footerNote }}
       </div>
     </div>
   </footer>
+
 </template>

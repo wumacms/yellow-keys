@@ -25,20 +25,20 @@ const isInternal = (href?: string) => href && href.startsWith('/') && !href.star
 
 <template>
   <!-- 3. 置顶/热点新闻 (大卡片突出显示) 类似活动页面的热门推荐 -->
-  <section class="bg-black pt-16 pb-8">
+  <section class="bg-white dark:bg-black pt-16 pb-8 transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-end mb-10 text-white">
-        <h2 class="text-3xl md:text-4xl font-black text-yellow-300">{{ header.title }}</h2>
+      <div class="flex justify-between items-end mb-10 text-gray-900 dark:text-white">
+        <h2 class="text-3xl md:text-4xl font-black text-yellow-500 dark:text-yellow-300">{{ header.title }}</h2>
         <RouterLink v-if="isInternal(header.moreLink)" :to="header.moreLink"
-          class="text-yellow-300 border-b border-yellow-300/30 pb-0.5 text-sm font-bold hover:text-white transition">更多热点
+          class="text-yellow-600 dark:text-yellow-300 border-b border-yellow-300/30 pb-0.5 text-sm font-bold hover:text-yellow-500 dark:hover:text-white transition">更多热点
           →</RouterLink>
         <a v-else :href="header.moreLink"
-          class="text-yellow-300 border-b border-yellow-300/30 pb-0.5 text-sm font-bold hover:text-white transition">更多热点
+          class="text-yellow-600 dark:text-yellow-300 border-b border-yellow-300/30 pb-0.5 text-sm font-bold hover:text-yellow-500 dark:hover:text-white transition">更多热点
           →</a>
       </div>
       <!-- 置顶大新闻: 学员国际比赛获奖 -->
       <div
-        class="bg-zinc-900 rounded-3xl border-2 border-yellow-300/30 overflow-hidden mb-8 hover:border-yellow-300 transition">
+        class="bg-gray-50 dark:bg-zinc-900 rounded-3xl border-2 border-gray-100 dark:border-yellow-300/30 overflow-hidden mb-8 hover:border-yellow-500 dark:hover:border-yellow-300 transition">
         <div class="grid md:grid-cols-2">
           <div class="h-80 md:h-auto overflow-hidden">
             <img :src="featuredNews.image" :alt="featuredNews.title" class="w-full h-full object-cover">
@@ -48,29 +48,29 @@ const isInternal = (href?: string) => href && href.startsWith('/') && !href.star
               <span class="bg-yellow-300 text-black text-xs font-bold px-3 py-1 rounded-full">
                 {{ featuredNews.badge }}
               </span>
-              <span class="text-gray-400 text-sm">{{ featuredNews.date }}</span>
+              <span class="text-gray-500 dark:text-gray-400 text-sm">{{ featuredNews.date }}</span>
             </div>
-            <h3 class="text-3xl font-black text-white mb-3">{{ featuredNews.title }}</h3>
-            <p class="text-gray-300 mb-4">{{ featuredNews.description }}</p>
+            <h3 class="text-3xl font-black text-gray-900 dark:text-white mb-3">{{ featuredNews.title }}</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">{{ featuredNews.description }}</p>
             <div class="flex gap-3">
               <template v-for="(btn, index) in featuredNews.buttons" :key="index">
                 <template v-if="btn.primary">
                   <RouterLink v-if="isInternal(btn.href)" :to="btn.href"
-                    class="bg-yellow-300 text-black px-6 py-3 rounded-full font-bold text-sm hover:bg-yellow-200 transition">
+                    class="bg-yellow-400 dark:bg-yellow-300 text-black px-6 py-3 rounded-full font-bold text-sm hover:bg-yellow-500 dark:hover:bg-yellow-200 transition">
                     {{ btn.text }}
                   </RouterLink>
                   <a v-else :href="btn.href"
-                    class="bg-yellow-300 text-black px-6 py-3 rounded-full font-bold text-sm hover:bg-yellow-200 transition">
+                    class="bg-yellow-400 dark:bg-yellow-300 text-black px-6 py-3 rounded-full font-bold text-sm hover:bg-yellow-500 dark:hover:bg-yellow-200 transition">
                     {{ btn.text }}
                   </a>
                 </template>
                 <template v-else>
                   <RouterLink v-if="isInternal(btn.href)" :to="btn.href"
-                    class="border border-yellow-300 text-yellow-300 px-6 py-3 rounded-full font-bold text-sm hover:bg-yellow-300 hover:text-black transition">
+                    class="border border-yellow-500 dark:border-yellow-300 text-yellow-600 dark:text-yellow-300 px-6 py-3 rounded-full font-bold text-sm hover:bg-yellow-500 dark:hover:bg-yellow-300 hover:text-black transition">
                     {{ btn.text }}
                   </RouterLink>
                   <a v-else :href="btn.href"
-                    class="border border-yellow-300 text-yellow-300 px-8 py-3 rounded-full font-bold inline-block hover:bg-yellow-300 hover:text-black transition">
+                    class="border border-yellow-500 dark:border-yellow-300 text-yellow-600 dark:text-yellow-300 px-8 py-3 rounded-full font-bold inline-block hover:bg-yellow-500 dark:hover:bg-yellow-300 hover:text-black transition">
                     {{ btn.text }}
                   </a>
                 </template>
@@ -82,18 +82,18 @@ const isInternal = (href?: string) => href && href.startsWith('/') && !href.star
       <!-- 两个次要热点并排 -->
       <div class="grid md:grid-cols-2 gap-6">
         <div v-for="(item, index) in hotNews" :key="index"
-          class="bg-zinc-900 rounded-2xl border border-yellow-300/20 overflow-hidden flex flex-col md:flex-row hover:border-yellow-300 transition">
+          class="bg-gray-50 dark:bg-zinc-900 rounded-2xl border border-gray-100 dark:border-yellow-300/20 overflow-hidden flex flex-col md:flex-row hover:border-yellow-500 dark:hover:border-yellow-300 transition">
           <div class="md:w-2/5 h-40 shrink-0 overflow-hidden">
             <img :src="item.image" :alt="item.title" class="w-full h-full object-cover">
           </div>
           <div class="p-5 md:w-3/5">
-            <span class="bg-yellow-300/20 text-yellow-300 text-xs px-2 py-1 rounded-full">{{ item.category }}</span>
-            <h4 class="font-bold text-white text-lg mt-2">{{ item.title }}</h4>
-            <p class="text-gray-400 text-sm">{{ item.summary }}</p>
-            <RouterLink v-if="isInternal(item.link)" :to="item.link" class="inline-block mt-3 text-yellow-300 text-sm font-bold border-b border-yellow-300/30">
+            <span class="bg-yellow-500/10 dark:bg-yellow-300/20 text-yellow-600 dark:text-yellow-300 text-xs px-2 py-1 rounded-full">{{ item.category }}</span>
+            <h4 class="font-bold text-gray-900 dark:text-white text-lg mt-2">{{ item.title }}</h4>
+            <p class="text-gray-500 dark:text-gray-400 text-sm line-clamp-2">{{ item.summary }}</p>
+            <RouterLink v-if="isInternal(item.link)" :to="item.link" class="inline-block mt-3 text-yellow-600 dark:text-yellow-300 text-sm font-bold border-b border-yellow-300/30">
               查看详情 →
             </RouterLink>
-            <a v-else :href="item.link" class="inline-block mt-3 text-yellow-300 text-sm font-bold border-b border-yellow-300/30">
+            <a v-else :href="item.link" class="inline-block mt-3 text-yellow-600 dark:text-yellow-300 text-sm font-bold border-b border-yellow-300/30">
               查看详情 →
             </a>
           </div>
@@ -101,4 +101,5 @@ const isInternal = (href?: string) => href && href.startsWith('/') && !href.star
       </div>
     </div>
   </section>
+
 </template>

@@ -19,10 +19,11 @@ const isInternal = (href?: string) => href && href.startsWith('/')
 </script>
 
 <template>
-  <section class="relative bg-gradient-to-b from-black to-zinc-900 pt-20 pb-24 md:py-28 overflow-hidden text-white">
+  <section class="relative bg-gradient-to-b from-gray-50 to-white dark:from-black dark:to-zinc-900 pt-20 pb-24 md:py-28 overflow-hidden text-gray-900 dark:text-white transition-colors duration-500">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div class="space-y-6">
+
           <span v-if="badge"
             class="inline-block bg-yellow-300/10 text-yellow-300 border border-yellow-300/30 px-4 py-1.5 rounded-full text-sm font-bold">
             {{ badge }}
@@ -33,7 +34,7 @@ const isInternal = (href?: string) => href && href.startsWith('/')
               <template v-else>{{ part.text }}</template>
             </template>
           </h1>
-          <p class="text-xl text-gray-300 max-w-lg">{{ description }}</p>
+          <p class="text-xl text-gray-600 dark:text-gray-300 max-w-lg">{{ description }}</p>
           <div class="flex flex-wrap gap-4 pt-4">
             <template v-for="(btn, index) in buttons" :key="index">
               <!-- Primary Button -->
@@ -50,11 +51,11 @@ const isInternal = (href?: string) => href && href.startsWith('/')
               <!-- Secondary Button -->
               <template v-else>
                 <RouterLink v-if="isInternal(btn.href)" :to="btn.href"
-                  class="border-2 border-yellow-300 text-yellow-300 px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-300 hover:text-black transition text-center">
+                  class="border-2 border-yellow-500 dark:border-yellow-300 text-yellow-600 dark:text-yellow-300 px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-500 dark:hover:bg-yellow-300 hover:text-white dark:hover:text-black transition text-center">
                   {{ btn.text }}
                 </RouterLink>
                 <a v-else :href="btn.href"
-                  class="border-2 border-yellow-300 text-yellow-300 px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-300 hover:text-black transition text-center">
+                  class="border-2 border-yellow-500 dark:border-yellow-300 text-yellow-600 dark:text-yellow-300 px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-500 dark:hover:bg-yellow-300 hover:text-white dark:hover:text-black transition text-center">
                   {{ btn.text }}
                 </a>
               </template>

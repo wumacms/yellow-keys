@@ -26,15 +26,15 @@ withDefaults(defineProps<{
 
 <template>
   <!-- 3. 名师展示网格 (采用类似案例区块卡片风格 + 特性区块的边框) 强调个人 -->
-  <section class="bg-black py-20">
+  <section class="bg-gray-50 dark:bg-black py-20 transition-colors duration-500">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-black text-yellow-300">{{ title }}</h2>
-        <p class="text-gray-400 text-lg mt-2">{{ subtitle }}</p>
+        <h2 class="text-3xl md:text-4xl font-black text-yellow-600 dark:text-yellow-300">{{ title }}</h2>
+        <p class="text-gray-600 dark:text-gray-400 text-lg mt-2">{{ subtitle }}</p>
       </div>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div v-for="(teacher, index) in teachers" :key="index"
-          class="bg-zinc-900 rounded-3xl border border-yellow-300/20 overflow-hidden hover:border-yellow-300 transition group">
+          class="bg-white dark:bg-zinc-900 rounded-3xl border border-gray-100 dark:border-yellow-300/20 shadow-sm overflow-hidden hover:border-yellow-500 dark:hover:border-yellow-300 transition-all duration-500 group">
           <div class="h-80 overflow-hidden">
             <img :src="teacher.image" :alt="teacher.subject + ' ' + teacher.name"
               class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
@@ -42,15 +42,15 @@ withDefaults(defineProps<{
           <div class="p-6">
             <div class="flex justify-between items-start">
               <div>
-                <h3 class="text-2xl font-bold text-white">{{ teacher.name }}</h3>
-                <p class="text-yellow-300 text-sm">{{ teacher.subject }}</p>
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white">{{ teacher.name }}</h3>
+                <p class="text-yellow-600 dark:text-yellow-300 text-sm font-semibold">{{ teacher.subject }}</p>
               </div>
-              <span class="bg-yellow-300/20 text-yellow-300 text-xs px-3 py-1 rounded-full border border-yellow-300/40">
+              <span class="bg-yellow-500/10 dark:bg-yellow-300/20 text-yellow-600 dark:text-yellow-300 text-xs px-3 py-1 rounded-full border border-yellow-500/30 dark:border-yellow-300/40">
                 {{ teacher.honor }}
               </span>
             </div>
-            <p class="text-gray-400 text-sm mt-4">{{ teacher.description }}</p>
-            <div class="flex gap-4 mt-4 text-sm text-gray-500">
+            <p class="text-gray-600 dark:text-gray-400 text-sm mt-4 line-clamp-2">{{ teacher.description }}</p>
+            <div class="flex gap-4 mt-4 text-sm text-gray-500 dark:text-gray-500 font-medium">
               <span v-for="(stat, sIndex) in teacher.stats" :key="sIndex">{{ stat }}</span>
             </div>
           </div>
@@ -58,10 +58,11 @@ withDefaults(defineProps<{
       </div>
       <div class="text-center mt-12">
         <a :href="cta.href"
-          class="border-2 border-yellow-300 text-yellow-300 px-10 py-4 rounded-full font-bold text-lg hover:bg-yellow-300 hover:text-black transition inline-flex items-center gap-2">
+          class="border-2 border-yellow-500 dark:border-yellow-300 text-yellow-600 dark:text-yellow-300 px-10 py-4 rounded-full font-bold text-lg hover:bg-yellow-500 dark:hover:bg-yellow-300 hover:text-white dark:hover:text-black transition-all duration-300 inline-flex items-center gap-2">
           📋 {{ cta.text }}
         </a>
       </div>
     </div>
   </section>
+
 </template>
